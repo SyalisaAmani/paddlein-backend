@@ -1,58 +1,118 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Paddlein Backend
 
-## About Laravel
+Backend API for **Paddlein**, a padel court booking application built with Laravel 13.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Paddlein provides court management, user authentication, booking reservations, availability checking, and manual payment management.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP 8.4
+- Laravel 13
+- MySQL
+- Laravel Sanctum
+- RESTful API
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Authentication
+- Customer registration and login
+- Token-based authentication using Laravel Sanctum
+- Role-based access control (Admin and Customer)
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Court Management
+- View available courts
+- View court details
+- Admin can create, update, and deactivate courts
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Booking Management
+- Create court reservations
+- Check court availability by date
+- Prevent overlapping reservations
+- View booking details
+- Cancel bookings according to cancellation policy
 
-## Agentic Development
+### Payment Management
+- Manual payment status management by admin
+- Payment status tracking
+- Paid cancellation requires manual refund handling
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Booking Rules
+
+- Each booking has a duration of 60 minutes.
+- Operating hours: 09:00–21:00 WIB.
+- Booking slots start from 09:00 until 20:00.
+- Customers can only access their own bookings.
+- Customers can cancel more than 2 hours before the booking time.
+- Admins can manage and cancel all bookings.
+- Inactive courts cannot be booked.
+
+## Installation
+
+Clone the repository:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/SyalisaAmani/paddlein-backend.git
+cd paddlein-backend
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Install dependencies:
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Create environment configuration:
 
-## Code of Conduct
+```bash
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Generate application key:
 
-## Security Vulnerabilities
+```bash
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Configure your MySQL database in `.env`, then run:
 
-## License
+```bash
+php artisan migrate --seed
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Start the development server:
+
+```bash
+php artisan serve
+```
+
+API base URL:
+
+```text
+http://127.0.0.1:8000/api
+```
+
+## Testing
+
+Run the test suite:
+
+```bash
+php artisan test
+```
+
+## Project Status
+
+Backend core development completed.
+
+- Laravel API
+- Authentication and authorization
+- Court management
+- Booking and cancellation
+- Manual payment management
+- Feature tests
+
+## Author
+
+**Syalisa Amani Fatiha**
+
+GitHub: [@SyalisaAmani](https://github.com/SyalisaAmani)
